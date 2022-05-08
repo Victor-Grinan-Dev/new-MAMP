@@ -1,0 +1,14 @@
+{
+    "name": "vendor/exercise",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Exercise\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "victor grinan"
+        }
+    ],
+    "require": {}
+}

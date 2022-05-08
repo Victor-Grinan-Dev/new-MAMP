@@ -1,18 +1,19 @@
-version: '3.8'
+version: "3.8"
 services:
   php-apache-environment:
-    container_name: php-apache
+    container_name: new-php-apache
     build:
       context: ./phpDir
       dockerfile: Dockerfile
     depends_on:
-      - db
+      - newdb
     volumes:
       - ./phpDir/src:/var/www/html/
     ports:
-      - 8005:80
-  db:
-    container_name: db
+      - 8015:80
+  newdb:
+    platform: linux/x86_64
+    container_name: newdb
     image: mysql
     restart: always
     environment:
@@ -21,13 +22,13 @@ services:
       MYSQL_USER: lionUser
       MYSQL_PASSWORD: lionPass
     ports:
-      - '9906:3306'
+      - "9916:3306"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - '9080:80'
+      - "9090:80"
     restart: always
     environment:
-      PMA_HOST: db
+      PMA_HOST: newdb
     depends_on:
-      - db
+      - newdb
